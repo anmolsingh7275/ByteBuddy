@@ -86,6 +86,10 @@ nav{
   border-radius: 50px;
   background-color: rgb(11, 16, 17);
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 #add svg{
   width: 30px;
@@ -106,6 +110,68 @@ form input{
   color: white;
   padding: 10px 20px;
   font-size: 19px;
+}
+.chat-page{
+  width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: start;
+  justify-content: star t;
+  flex-direction: column;
+  gap: 20px;
+  pad: 20px;
+}
+.user,.ai{ 
+ width: 90%;
+ padding: 20px 30px;
+ color: white;
+ background-color: rgb(11, 16, 17);
+ border: 2px solid rgb(83, 81, 81);
+ border-radius: 30px;
+ font-size: 20px;
+}
+.pop-up{
+
+  width: 200px;
+  height: 120px;
+  position: absolute;
+  bottom: 120px;
+  left: 15%;
+  background-color: rgb(11, 16, 17);
+  border: 2px solid rgb(56, 55, 55);
+ border-radius: 20px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+ gap: 10px;
+ padding: 5px;
+}
+.select-up,.select-gen{
+  color: white;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px ;
+  font-size: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.select-up:hover,.select-gen:hover{
+  background-color: rgb(47, 49, 50);
+}
+.select-up svg{
+  height: 25px;
+  width: 25px;
+  color:green ; 
+}
+.select-gen svg{
+   
+  height: 25px;
+  width: 25px;
+  color:rgb(12, 200, 200) ;
 }
 @media (max-width:500px) {
   #tag{
