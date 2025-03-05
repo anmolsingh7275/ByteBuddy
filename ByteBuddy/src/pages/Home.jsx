@@ -8,9 +8,9 @@ import { FaArrowUp } from "react-icons/fa";
 import { dataContext } from '../context/UserContext';
 import Chat from './Chat';
 function Home() {
-  let {startRes,setStartRes,popUp, setPopUp} = useContext(dataContext)
+  let {startRes,setStartRes,popUp, setPopUp, input,setInput} = useContext(dataContext)
   async function handlesubmit(e){
-    e.preventDefault()
+ 
     setStartRes(true)
   }
   return (
@@ -38,7 +38,13 @@ function Home() {
     </div>
    </div> : <Chat/>}
    
-   <form className="input-box" onSubmit={(e)=>handlesubmit(e)}>
+   <form className="input-box" onSubmit={(e)=>{
+       e.preventDefault()
+    if(input){
+      handlesubmit(e)
+    }   
+   }
+    }>
      
      {popUp? <div className="pop-up">
       <div className="select-up">
@@ -59,10 +65,10 @@ function Home() {
     }}>
     <IoMdAdd />
     </div>
-    <input type="text" placeholder='Ask Something ...' />
-    <button id="submmit">
+    <input type="text" placeholder='Ask Something ...'  onChange={(e)=>setInput(e.target.value)} value={input}/>
+    {input? <button id="submmit">
     <FaArrowUp />
-     </button>
+     </button>: null}
    </form>
   </div>
   )
