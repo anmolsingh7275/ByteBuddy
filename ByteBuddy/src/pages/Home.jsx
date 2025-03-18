@@ -5,13 +5,36 @@ import { IoImagesSharp } from "react-icons/io5";
 import { BsChatRightDots } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 import { FaArrowUp } from "react-icons/fa";
-import { dataContext } from '../context/UserContext';
+import { dataContext, prevUser, user } from '../context/UserContext';
 import Chat from './Chat';
+import { generateResponse } from '../gemini';
 function Home() {
-  let {startRes,setStartRes,popUp, setPopUp, input,setInput} = useContext(dataContext)
+  let {startRes,setStartRes,popUp, setPopUp, input,setInput,feature,setfeature,previnput,setprevinput} = useContext(dataContext)
   async function handlesubmit(e){
  
     setStartRes(true)
+   prevUser.data = user.data,
+   prevUser.mime_type = user.mime_type,
+   prevUser.imgUrl = user.imgUrl,
+   prevUser.prompt(input)
+    setInput("")
+    let result = await  generateResponse()
+    console.log(result);
+  }
+
+  function handleImage(e){
+     setfeature("upimg")
+     let file = e.target.files[0];
+     let reader = new FileReader()
+     reader.onload =(event)=>{
+        let base64 = event.target.result.split(",")[1]
+        user.data = base64
+        user.mime_type = file.type
+        console.log(event);
+        user.imgUrl = `data:${user.mime_type};base64,${user.data}`
+     }
+     reader.readAsDataURL(file)
+     
   }
   return (
   <div className="Home">
@@ -20,23 +43,28 @@ function Home() {
         ByteBuddy
     </div>
    </nav>
+   <input type="file"  accept='image/*'hidden id = 'inputImg' onChange={ handleImage}/>
    {!startRes? <div className="hero">
     <span id="tag">What I Can Help with ?</span>
     <div className="cate">
-        <div className="upimg">
+        <div className="upimg" onClick={()=>
+          document.getElementById("inputImg").click()
+        }>
         <IoImagesSharp />
         <span>Upload Image </span>
         </div>
-        <div className="genimg">
+        <div className="genimg" onClick={()=>setfeature("genimg")}>
         <RiImageAiLine />
         <span>Generate Image </span>
         </div>
-        <div className="chat">
+        <div className="chat" onClick={()=>setfeature("chat")}>
         <BsChatRightDots />
         <span>Let's Chat</span>
         </div>
     </div>
    </div> : <Chat/>}
+
+   
    
    <form className="input-box" onSubmit={(e)=>{
        e.preventDefault()
@@ -47,12 +75,14 @@ function Home() {
     }>
      
      {popUp? <div className="pop-up">
-      <div className="select-up">
+      <div className="select-up"onClick={()=>
+          document.getElementById("inputImg").click()
+        } >
       <IoImagesSharp />
       <span>Upload Image </span>
       </div>
 
-      <div className="select-gen">
+      <div className="select-gen" onClick={()=>setfeature("genimg")}>
       <RiImageAiLine />
       <span>Generate Image </span>
       </div>
@@ -60,11 +90,10 @@ function Home() {
     
 
 
-    <div id="add" onClick={()=>{
-      setPopUp(prev=>!prev)
-    }}>
-    <IoMdAdd />
-    </div>
+    <div id="add" onClick={() => setPopUp(prev => !prev)}>
+  {feature === "genimg" ? <RiImageAiLine  id= "genimg"/> : <IoMdAdd />}
+</div>
+
     <input type="text" placeholder='Ask Something ...'  onChange={(e)=>setInput(e.target.value)} value={input}/>
     {input? <button id="submmit">
     <FaArrowUp />

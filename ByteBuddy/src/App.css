@@ -91,6 +91,9 @@ nav{
   align-items: center;
   cursor: pointer;
 }
+#genimg{
+  color: rgb(51, 51, 150);
+}
 #add svg{
   width: 30px;
   height: 30px;
