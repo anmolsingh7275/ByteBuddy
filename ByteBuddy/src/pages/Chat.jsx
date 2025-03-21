@@ -1,21 +1,28 @@
 import React, { useContext } from 'react'
-import { dataContext } from '../context/UserContext'
+import { dataContext, prevUser } from '../context/UserContext'
 
 function Chat() {
-  let { input,setInput,previnput,setprevinput} = useContext(dataContext)
+  let { input,setInput,previnput,setprevinput,showResult,setshowResult, feature,setfeature,  prevFeature,setPrevFeature} = useContext(dataContext)
   return (
     <div className="chat-page">
 
        <div className="user">
-
-        <img src="" alt="" />
-        <span> {previnput}</span>
+        {prevFeature == "upimg"? <> <img src={prevUser.imgUrl} alt="" />
+        <span> {prevUser.prompt}</span></> : <span> {prevUser.prompt}</span>}
         </div>
 
         <div className="ai">
 
-        <img src="" alt="" />
-        <span> ai </span>
+        {prevFeature == "genimg"?
+         <> 
+        <img src={prevUser.imgUrl} alt="" />
+         
+        {!showResult?<span> Loading </span>:< span> {showResult}</span>}
+        </>
+        :
+        !showResult?<span> Loading </span>
+
+         : <span> {showResult}</span>}
 
         </div>
     </div>

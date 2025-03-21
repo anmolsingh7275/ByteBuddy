@@ -9,17 +9,25 @@ import { dataContext, prevUser, user } from '../context/UserContext';
 import Chat from './Chat';
 import { generateResponse } from '../gemini';
 function Home() {
-  let {startRes,setStartRes,popUp, setPopUp, input,setInput,feature,setfeature,previnput,setprevinput} = useContext(dataContext)
+  let {startRes,setStartRes,popUp, setPopUp, input,setInput,feature,setfeature,showResult,setshowResult,prevFeature,setPrevFeature} = useContext(dataContext)
   async function handlesubmit(e){
  
     setStartRes(true)
+    setPrevFeature(feature)
+    setfeature("chat")
+    setshowResult("")
    prevUser.data = user.data,
    prevUser.mime_type = user.mime_type,
    prevUser.imgUrl = user.imgUrl,
-   prevUser.prompt(input)
+   prevUser.prompt = input
     setInput("")
     let result = await  generateResponse()
-    console.log(result);
+    setshowResult(result)
+    setfeature("chat")
+    user.data = null
+    user.mime_type = null 
+    user.imgUrl = null
+    
   }
 
   function handleImage(e){
@@ -30,7 +38,6 @@ function Home() {
         let base64 = event.target.result.split(",")[1]
         user.data = base64
         user.mime_type = file.type
-        console.log(event);
         user.imgUrl = `data:${user.mime_type};base64,${user.data}`
      }
      reader.readAsDataURL(file)

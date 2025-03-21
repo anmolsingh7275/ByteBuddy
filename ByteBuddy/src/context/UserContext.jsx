@@ -20,13 +20,16 @@ function UserContext({children}) {
     let [ popUp, setPopUp]  = useState(false)
     let [input,setInput] = useState("")
     let [feature,setfeature] = useState("chat")
-    let [previnput,setprevinput] = useState("")
+    let [showResult,setshowResult] = useState("")
+    let [prevFeature,setPrevFeature] = useState("chat")
     let value ={
      startRes,setStartRes,
      popUp, setPopUp,
      input,setInput,
      feature,setfeature,
-     previnput,setprevinput
+     showResult,setshowResult,
+     prevFeature,setPrevFeature
+ 
     }
   return (
     <div>
