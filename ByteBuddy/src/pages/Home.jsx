@@ -8,6 +8,7 @@ import { FaArrowUp } from "react-icons/fa";
 import { dataContext, prevUser, user } from '../context/UserContext';
 import Chat from './Chat';
 import { generateResponse } from '../gemini';
+import { query } from '../huggingFace';
 function Home() {
   let {startRes,setStartRes,popUp, setPopUp, input,setInput,feature,setfeature,showResult,setshowResult,prevFeature,setPrevFeature} = useContext(dataContext)
   async function handlesubmit(e){
@@ -42,6 +43,15 @@ function Home() {
      }
      reader.readAsDataURL(file)
      
+  }
+ async function handleGenerateImg(){
+  setStartRes(true)
+  setPrevFeature(feature)
+  prevUser.prompt = input
+   let result = await query().then((e)=>{
+  setInput("")
+  setfeature("chat")
+   })
   }
   return (
   <div className="Home">
@@ -79,7 +89,12 @@ function Home() {
    <form className="input-box" onSubmit={(e)=>{
        e.preventDefault()
     if(input){
-      handlesubmit(e)
+      if(feature == "genimg"){
+        handleGenerateImg(e);
+      }else{
+        handlesubmit(e)
+      }
+     
     }   
    }
     }>
