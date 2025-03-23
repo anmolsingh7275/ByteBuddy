@@ -17,10 +17,10 @@ function Chat() {
          <> 
         <img src={prevUser.imgUrl} alt="" />
          
-        {!showResult?<span> Loading </span>:< span> {showResult}</span>}
+        {!showResult?<span> Generating image...</span>:<img src={prevUser.imgUrl} alt="" />}
         </>
         :
-        !showResult?<span> Loading </span>
+        !showResult?<span> </span>
 
          : <span> {showResult}</span>}
 

@@ -46,7 +46,10 @@ function Home() {
   return (
   <div className="Home">
    <nav>
-    <div className="logo">
+    <div className="logo" onClick={()=>{
+      setStartRes(false)
+      setfeature("chat")
+    }}>
         ByteBuddy
     </div>
    </nav>
@@ -82,14 +85,20 @@ function Home() {
     }>
      
      {popUp? <div className="pop-up">
-      <div className="select-up"onClick={()=>
+      <div className="select-up"onClick={()=>{
+        setPopUp(false)
+        setfeature("chat")
+      
           document.getElementById("inputImg").click()
-        } >
+      }} >
       <IoImagesSharp />
       <span>Upload Image </span>
       </div>
 
-      <div className="select-gen" onClick={()=>setfeature("genimg")}>
+      <div className="select-gen" onClick={()=>
+        {
+          setPopUp(false)
+        setfeature("genimg")}}>
       <RiImageAiLine />
       <span>Generate Image </span>
       </div>
@@ -98,7 +107,7 @@ function Home() {
 
 
     <div id="add" onClick={() => setPopUp(prev => !prev)}>
-  {feature === "genimg" ? <RiImageAiLine  id= "genimg"/> : <IoMdAdd />}
+  {feature == "genimg" ? <RiImageAiLine  id= "genimg"/> : <IoMdAdd />}
 </div>
 
     <input type="text" placeholder='Ask Something ...'  onChange={(e)=>setInput(e.target.value)} value={input}/>
