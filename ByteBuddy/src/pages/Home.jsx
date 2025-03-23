@@ -8,7 +8,6 @@ import { FaArrowUp } from "react-icons/fa";
 import { dataContext, prevUser, user } from '../context/UserContext';
 import Chat from './Chat';
 import { generateResponse } from '../gemini';
-import { query } from '../huggingFace';
 function Home() {
   let {startRes,setStartRes,popUp, setPopUp, input,setInput,feature,setfeature,showResult,setshowResult,prevFeature,setPrevFeature} = useContext(dataContext)
   async function handlesubmit(e){
@@ -44,22 +43,10 @@ function Home() {
      reader.readAsDataURL(file)
      
   }
- async function handleGenerateImg(){
-  setStartRes(true)
-  setPrevFeature(feature)
-  prevUser.prompt = input
-   let result = await query().then((e)=>{
-  setInput("")
-  setfeature("chat")
-   })
-  }
   return (
   <div className="Home">
    <nav>
-    <div className="logo" onClick={()=>{
-      setStartRes(false)
-      setfeature("chat")
-    }}>
+    <div className="logo">
         ByteBuddy
     </div>
    </nav>
@@ -89,31 +76,20 @@ function Home() {
    <form className="input-box" onSubmit={(e)=>{
        e.preventDefault()
     if(input){
-      if(feature == "genimg"){
-        handleGenerateImg(e);
-      }else{
-        handlesubmit(e)
-      }
-     
+      handlesubmit(e)
     }   
    }
     }>
      
      {popUp? <div className="pop-up">
-      <div className="select-up"onClick={()=>{
-        setPopUp(false)
-        setfeature("chat")
-      
+      <div className="select-up"onClick={()=>
           document.getElementById("inputImg").click()
-      }} >
+        } >
       <IoImagesSharp />
       <span>Upload Image </span>
       </div>
 
-      <div className="select-gen" onClick={()=>
-        {
-          setPopUp(false)
-        setfeature("genimg")}}>
+      <div className="select-gen" onClick={()=>setfeature("genimg")}>
       <RiImageAiLine />
       <span>Generate Image </span>
       </div>
@@ -122,7 +98,7 @@ function Home() {
 
 
     <div id="add" onClick={() => setPopUp(prev => !prev)}>
-  {feature == "genimg" ? <RiImageAiLine  id= "genimg"/> : <IoMdAdd />}
+  {feature === "genimg" ? <RiImageAiLine  id= "genimg"/> : <IoMdAdd />}
 </div>
 
     <input type="text" placeholder='Ask Something ...'  onChange={(e)=>setInput(e.target.value)} value={input}/>

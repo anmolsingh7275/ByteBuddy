@@ -181,9 +181,7 @@ form input{
   width: 25px;
   color:green ; 
 }
-.logo{
-  cursor: pointer;
-}
+.logo{}
 .select-gen svg{
    
   height: 25px;
