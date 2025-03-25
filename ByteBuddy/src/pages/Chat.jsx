@@ -15,9 +15,9 @@ function Chat() {
 
         {prevFeature == "genimg"?
          <> 
-        <img src={prevUser.imgUrl} alt="" />
+   
          
-        {!showResult?<span> Loading </span>:< span> {showResult}</span>}
+        {!showResult?<span>Generating img ..</span>:<img src={prevUser.imgUrl} alt="" />}
         </>
         :
         !showResult?<span> Loading </span>

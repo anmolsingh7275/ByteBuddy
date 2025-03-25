@@ -46,7 +46,10 @@ function Home() {
   return (
   <div className="Home">
    <nav>
-    <div className="logo">
+    <div className="logo" onClick={()=>{
+      setStartRes(false)
+      setfeature("chat")
+    }}>
         ByteBuddy
     </div>
    </nav>
@@ -56,11 +59,13 @@ function Home() {
     <div className="cate">
         <div className="upimg" onClick={()=>
           document.getElementById("inputImg").click()
-        }>
+         }>
         <IoImagesSharp />
         <span>Upload Image </span>
         </div>
-        <div className="genimg" onClick={()=>setfeature("genimg")}>
+        <div className="genimg" onClick={()=>
+          
+          setfeature("genimg")}>
         <RiImageAiLine />
         <span>Generate Image </span>
         </div>
@@ -82,14 +87,20 @@ function Home() {
     }>
      
      {popUp? <div className="pop-up">
-      <div className="select-up"onClick={()=>
+      <div className="select-up"onClick={()=>{
+        setPopUp(false)
           document.getElementById("inputImg").click()
-        } >
+        }} >
       <IoImagesSharp />
       <span>Upload Image </span>
       </div>
 
-      <div className="select-gen" onClick={()=>setfeature("genimg")}>
+      <div className="select-gen" onClick={()=>
+
+        {
+          setPopUp(false)
+          setfeature("chat")
+          setfeature("genimg")}}>
       <RiImageAiLine />
       <span>Generate Image </span>
       </div>

@@ -60,6 +60,9 @@ nav{
   width: 25px;
   color:rgb(12, 200, 200) ;
 }
+.logo{
+  cursor: pointer;
+}
 
 .chat svg{
   height: 25px;

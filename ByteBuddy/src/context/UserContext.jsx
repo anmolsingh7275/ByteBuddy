@@ -13,7 +13,6 @@ export let prevUser = {
   prompt : null
 }
 
-
  
 function UserContext({children}) {
     let [startRes,setStartRes] = useState(false)
