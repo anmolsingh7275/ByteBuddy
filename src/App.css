@@ -1,0 +1,214 @@
+.Home {
+  display: flex; /* Add flex display */
+  flex-direction: column; /* Stack child elements vertically */
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+nav{
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  color: white;
+  padding: 10px 30px;
+  font-size: 30px;
+}
+.hero{
+   width: 100%;
+   height: 70%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   flex-wrap: wrap;
+   color: white;
+   gap: 20px;
+   padding: 10px, 20px; 
+}
+#tag{
+    font-size: 2.5vmax;
+}
+.cate{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+
+}
+.upimg,.chat,.genimg{
+  padding: 10px 20px;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+
+}
+.upimg svg{
+  height: 25px;
+  width: 25px;
+  color:green ;
+}
+.genimg svg{
+  height: 25px;
+  width: 25px;
+  color:rgb(12, 200, 200) ;
+}
+.logo{
+  cursor: pointer;
+}
+
+.chat svg{
+  height: 25px;
+  width: 25px;
+  color:rgb(233, 88, 15) ;
+}
+
+.upimg:hover,.chat:hover,.genimg:hover{
+     background-color: rgb(47, 49, 50);
+}
+.input-box{
+  width: 100%;
+  height: calc(100vh - 80px - 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0px,20px;
+}
+#add,#submmit{
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgb(83, 81, 81);
+  border-radius: 50px;
+  background-color: rgb(11, 16, 17);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#genimg{
+  color: rgb(51, 51, 150);
+}
+#add svg{
+  width: 30px;
+  height: 30px;
+}
+#submmit svg{
+  width: 30px;
+  height: 30px;
+}
+form input{
+  max-width: 60%;
+  width: calc(100% - 120px);
+  height: 60px;
+  background-color: rgb(11, 16, 17);
+  border: 2px solid rgb(83, 81, 81);
+  border-radius: 30px;
+  outline: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 19px;
+}
+.chat-page{
+  width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: start;
+  justify-content: star t;
+  flex-direction: column;
+  gap: 20px;
+  pad: 20px;
+  overflow-y: auto;
+}
+.user,.ai{ 
+ width: 90%;
+ padding: 20px 30px;
+ color: white;
+ background-color: rgb(11, 16, 17);
+ border: 2px solid rgb(83, 81, 81);
+ border-radius: 30px;
+ font-size: 20px;
+ display: flex;
+ align-items: start;
+ justify-content: center;
+ flex-direction: column;
+ gap: 20px;
+
+}
+.user img{
+  max-width: 300px;
+  width: 90%;
+  border-radius: 20px;
+}
+
+.ai img{
+  max-width: 300px;
+  width: 90%;
+  border-radius: 20px;
+}
+.pop-up{
+
+  width: 200px;
+  height: 120px;
+  position: absolute;
+  bottom: 120px;
+  left: 15%;
+  background-color: rgb(11, 16, 17);
+  border: 2px solid rgb(56, 55, 55);
+ border-radius: 20px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+ gap: 10px;
+ padding: 5px;
+}
+.select-up,.select-gen{
+  color: white;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px ;
+  font-size: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.select-up:hover,.select-gen:hover{
+  background-color: rgb(47, 49, 50);
+}
+.select-up svg{
+  height: 25px;
+  width: 25px;
+  color:green ; 
+}
+.logo{}
+.select-gen svg{
+   
+  height: 25px;
+  width: 25px;
+  color:rgb(12, 200, 200) ;
+}
+#im{
+  height: 100px;
+  border-radius: 20px;
+  position: absolute;
+  bottom: 120px;
+  left: 15%;
+  box-shadow: 2px 2px 10px rgb(62, 62, 135) ;
+
+}
+@media (max-width:500px) {
+  #tag{
+    font-size: 20px;
+  }
+}
