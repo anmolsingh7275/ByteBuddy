@@ -2,7 +2,7 @@ import { prevUser } from "./context/UserContext";
 
 export async function query() {
 	const response = await fetch(
-		,
+		
 		{
 			headers: {
 				Authorization: "Bearer ",
